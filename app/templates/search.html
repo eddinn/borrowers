@@ -1,6 +1,7 @@
 {% extends "base.html" %}
-{% import 'bootstrap/wtf.html' as wtf %}
+
 {% block app_content %}
+    <h3>{{ ('Search results') }}</h3>
     {% for post in posts %}
         {% include '_post.html' %}
     {% endfor %}
@@ -8,12 +9,14 @@
         <ul class="pager">
             <li class="previous{% if not prev_url %} disabled{% endif %}">
                 <a href="{{ prev_url or '#' }}">
-                    <span aria-hidden="true"><i class="fas fa-angle-left"></i></span> Newer
+                    <span aria-hidden="true"><i class="fas fa-angle-left"></i></span>
+                    {{ ('Previous results') }}
                 </a>
             </li>
             <li class="next{% if not next_url %} disabled{% endif %}">
                 <a href="{{ next_url or '#' }}">
-                    Older <span aria-hidden="true"><i class="fas fa-angle-right"></i></span>
+                    {{ ('Next results') }}
+                    <span aria-hidden="true"><i class="fas fa-angle-right"></i></span>
                 </a>
             </li>
         </ul>
