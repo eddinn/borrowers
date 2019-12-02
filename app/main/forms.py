@@ -5,9 +5,8 @@ from wtforms.validators import DataRequired, Optional, Length
 
 
 # Forms
-class PostForm(FlaskForm):
+class BorrowForm(FlaskForm):
     clientname = StringField('Name', validators=[DataRequired()])
-    clientss = StringField('Social security number', validators=[Optional()])
     clientemail = StringField('Email', validators=[DataRequired()])
     clientphone = StringField('Phone', validators=[DataRequired()])
     clientaddress = StringField('Address', validators=[Optional()])

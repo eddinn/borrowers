@@ -1,6 +1,6 @@
 {% extends 'bootstrap/base.html' %}
 {% block title %}
-    {% if title %}{{ title }} - Spjald{% else %}Welcome to Spjald{% endif %}
+    {% if title %}{{ title }} - Borrowers{% else %}Welcome to Borrowers{% endif %}
 {% endblock %}
 {% block navbar %}
 <script src="https://kit.fontawesome.com/81c190df67.js" crossorigin="anonymous"></script>
@@ -13,14 +13,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url_for('main.index') }}"><i class="far fa-address-card fa-lg"></i> Spjald</a>
+                <a class="navbar-brand" href="{{ url_for('main.index') }}"><i class="far fa-address-card fa-lg"></i> Borrowers</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url_for('main.index') }}"><i class="fas fa-home"></i> Home</a></li>
                     {% if current_user.is_authenticated %}
                     <li><a href="{{ url_for('main.explore') }}"><i class="fas fa-globe"></i> Explore</a></li>
-                    <li><a href="{{ url_for('main.addpost') }}"><i class="fas fa-plus"></i> Add post</a></li>
+                    <li><a href="{{ url_for('main.add') }}"><i class="fas fa-plus"></i> Add new</a></li>
                     {% endif %}
                 </ul>
                 {% if g.search_form %}
