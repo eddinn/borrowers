@@ -20,7 +20,7 @@
                     <li><a href="{{ url_for('main.index') }}"><i class="fas fa-home"></i> Home</a></li>
                     {% if current_user.is_authenticated %}
                     <li><a href="{{ url_for('main.explore') }}"><i class="fas fa-globe"></i> Explore</a></li>
-                    <li><a href="{{ url_for('main.add') }}"><i class="fas fa-plus"></i> Add new</a></li>
+                    <li><a href="{{ url_for('main.addpost') }}"><i class="fas fa-plus"></i> New client</a></li>
                     {% endif %}
                 </ul>
                 {% if g.search_form %}

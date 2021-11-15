@@ -86,13 +86,19 @@ def edit_profile():
     token = current_user.get_reset_password_token()
     user = User.verify_reset_password_token(token)
     form = EditProfileForm(current_user.username)
+    if form.cancel.data:
+        return redirect(url_for('main.user', username=current_user.username))
     if form.validate_on_submit():
+        current_user.name = form.name.data
         current_user.username = form.username.data
+        current_user.email = form.email.data
         user.set_password(form.password.data)
         db.session.commit()
         flash('Your changes have been saved.')
         return redirect(url_for('auth.edit_profile'))
     elif request.method == 'GET':
+        form.name.data = current_user.name
         form.username.data = current_user.username
+        form.email.data = current_user.email
     return render_template('auth/edit_profile.html', title='Edit profile',
                            form=form)

@@ -12,7 +12,7 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = os.environ.get("SECRET_KEY") or \
         "you-willnever-guess-the-supersecret-key"
-    DEBUG = True
+    DEBUG = False
     CSRF_ENABLED = True
     MAIL_SERVER = os.environ.get('MAIL_SERVER')
     MAIL_PORT = int(os.environ.get('MAIL_PORT') or 25)

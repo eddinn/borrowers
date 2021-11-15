@@ -48,11 +48,15 @@ class ResetPasswordForm(FlaskForm):
 
 
 class EditProfileForm(FlaskForm):
+    name = StringField('Name', validators=[Optional()])
     username = StringField('Username', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[Optional()])
     password2 = PasswordField(
         'Repeat password', validators=[Optional(), EqualTo('password')])
     submit = SubmitField('Submit')
+    cancel = SubmitField(label='Cancel',
+                         render_kw={'formnovalidate': True})
 
     def __init__(self, original_username, *args, **kwargs):
         super(EditProfileForm, self).__init__(*args, **kwargs)
