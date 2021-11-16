@@ -53,6 +53,7 @@
         {% endwith %}
         {% block app_content %}{% endblock %}
     </div>
+    {% include 'footer.html' %}
 {% endblock %}
 {% block scripts %}
     {{ super() }}
