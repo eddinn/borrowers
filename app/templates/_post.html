@@ -1,12 +1,12 @@
-<div>
+<div class="col-xs-12 col-sm-6">
     <table class="table table-hover">
         <tr>
             <td width="70px">
-                <div style="height: auto; width: 300px;">
-                    <b>Client ID: {{ post.id }}</b><br />
-                    <a href="{{ url_for('main.user', username=post.author.username) }}">{{ post.author.name }} </a>
+                <div style="height: auto; width: 140px;">
+                    <a href="{{ url_for('main.user', username=post.author.username) }}">{{ post.author.name }} </a><br />
                     added: {{ moment(post.timestamp).fromNow() }}<br />
-                    <hr style="width: auto; text-align: left; margin-left:20px; margin-top: 5px; margin-bottom: 5px; margin-right: 180px;">
+                    <hr style="width: auto; text-align: left; margin-left:5px; margin-top: 5px; margin-bottom: 5px; margin-right: 10px;">
+                    <b>Borrower ID: {{ post.id }}</b><br />
                     {{ post.clientname }}<br />
                     {{ post.clientss }}<br />
                     {{ post.clientemail }}<br />
@@ -19,8 +19,8 @@
                 </div>
             </td>
             <td>
-                <div style="height: auto; width: 400px;">
-                    <b>Client info:</b><br />
+                <div style="height: auto; width: 380px;">
+                    <b>Item list:</b><br />
                     {{ post.clientinfo|safe }}<br />
                 </div>
             </td>

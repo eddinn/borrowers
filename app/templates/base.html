@@ -4,8 +4,8 @@
 {% endblock %}
 {% block navbar %}
 <script src="https://kit.fontawesome.com/81c190df67.js" crossorigin="anonymous"></script>
-    <nav class="navbar navbar-default">
-        <div class="container">
+    <div class="container">
+        <nav class="navbar navbar-default justify-content-between" style="margin-top: 20px;">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
@@ -26,7 +26,7 @@
                 {% if g.search_form %}
                 <form class="navbar-form navbar-left" method="get" action="{{ url_for('main.search') }}">
                     <div class="form-group">
-                        {{ g.search_form.q(size=20, class='form-control', placeholder=g.search_form.q.label.text) }}
+                        {{ g.search_form.q(size=15, class='form-control', placeholder=g.search_form.q.label.text) }}
                     </div>
                 </form>
                 {% endif %}
@@ -39,8 +39,8 @@
                     {% endif %}
                 </ul>
             </div>
-        </div>
         </nav>
+    </div>
 {% endblock %}
 {% block content %}
     <div class="container">
