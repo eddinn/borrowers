@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% import 'bootstrap/wtf.html' as wtf %}
 {% block app_content %}
-<div class="row">
+<div class="row justify-content-md-center">
     {% for post in posts %}
         {% include '_post.html' %}
     {% endfor %}

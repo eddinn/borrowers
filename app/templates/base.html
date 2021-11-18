@@ -5,7 +5,7 @@
 {% block navbar %}
 <script src="https://kit.fontawesome.com/81c190df67.js" crossorigin="anonymous"></script>
     <div class="container">
-        <nav class="navbar navbar-default justify-content-between" style="margin-top: 20px;">
+        <nav class="navbar navbar-default navbar-expand-lg justify-content-between" style="margin-top: 20px;">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
@@ -20,7 +20,7 @@
                     <li><a href="{{ url_for('main.index') }}"><i class="fas fa-home"></i> Home</a></li>
                     {% if current_user.is_authenticated %}
                     <li><a href="{{ url_for('main.explore') }}"><i class="fas fa-globe"></i> Explore</a></li>
-                    <li><a href="{{ url_for('main.addpost') }}"><i class="fas fa-plus"></i> New client</a></li>
+                    <li><a href="{{ url_for('main.addpost') }}"><i class="fas fa-plus"></i> New borrower</a></li>
                     {% endif %}
                 </ul>
                 {% if g.search_form %}
