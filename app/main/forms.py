@@ -16,7 +16,7 @@ class PostForm(FlaskForm):
     clientaddress = StringField('Address', validators=[Optional()])
     clientzip = StringField('ZIP', validators=[Optional()])
     clientcity = StringField('City', validators=[Optional()])
-    clientinfo = TextAreaField('Info', validators=[Optional(),
+    clientinfo = TextAreaField('Item list', validators=[Optional(),
                                Length(max=2048)])
     submit = SubmitField(label='Submit')
     cancel = SubmitField(label='Cancel', render_kw={'formnovalidate': True})
@@ -44,7 +44,7 @@ class EditPostForm(FlaskForm):
     clientaddress = StringField('Address', validators=[Optional()])
     clientzip = StringField('ZIP', validators=[Optional()])
     clientcity = StringField('City', validators=[Optional()])
-    clientinfo = TextAreaField('Info', validators=[Optional(),
+    clientinfo = TextAreaField('Item list', validators=[Optional(),
                                Length(max=2048)])
     submit = SubmitField(label='Submit')
     cancel = SubmitField(label='Cancel',
