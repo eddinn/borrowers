@@ -1,23 +1,36 @@
 {% extends "base.html" %}
 {% import 'bootstrap/wtf.html' as wtf %}
 {% block app_content %}
-<div class="row justify-content-md-center">
-    {% for post in posts %}
-        {% include '_post.html' %}
-    {% endfor %}
-</div>
-    <nav aria-label="...">
-        <ul class="pager">
-            <li class="previous{% if not prev_url %} disabled{% endif %}">
-                <a href="{{ prev_url or '#' }}">
-                    <span aria-hidden="true"><i class="fas fa-angle-left"></i></span> Newer
-                </a>
-            </li>
-            <li class="next{% if not next_url %} disabled{% endif %}">
-                <a href="{{ next_url or '#' }}">
-                    Older <span aria-hidden="true"><i class="fas fa-angle-right"></i></span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+{% if posts %}
+    <div class="row justify-content-md-center">
+        {% for post in posts %}
+                {% include '_post.html' %}
+        {% endfor %}
+    </div>
+        <nav aria-label="...">
+            <ul class="pager">
+                <li class="previous{% if not prev_url %} disabled{% endif %}">
+                    <a href="{{ prev_url or '#' }}">
+                        <span aria-hidden="true"><i class="fas fa-angle-left"></i></span> Newer
+                    </a>
+                </li>
+                <li class="next{% if not next_url %} disabled{% endif %}">
+                    <a href="{{ next_url or '#' }}">
+                        Older <span aria-hidden="true"><i class="fas fa-angle-right"></i></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    {% else %}
+        <div class="container align-items-center" style="height: 700px; min-height: 200px;">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 justify-content-md-center">
+                <br><br><br><br><br><br><br><br>
+                <h4>
+                    No one has borrowed/lent anything yet!
+                </h4>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    {% endif %}
 {% endblock %}
