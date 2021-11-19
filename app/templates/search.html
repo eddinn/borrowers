@@ -2,9 +2,11 @@
 
 {% block app_content %}
     <h3>{{ ('Search results') }}</h3>
-    {% for post in posts %}
-        {% include '_post.html' %}
-    {% endfor %}
+    <div class="row justify-content-md-center">
+        {% for post in posts %}
+            {% include '_post.html' %}
+        {% endfor %}
+    </div>
     <nav aria-label="...">
         <ul class="pager">
             <li class="previous{% if not prev_url %} disabled{% endif %}">
