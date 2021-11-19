@@ -62,6 +62,9 @@ def addpost():
 def editpost(id):  # pylint: disable=redefined-builtin
     qry = Post.query.filter_by(id=id).first()
     form = EditPostForm(request.form, obj=qry)
+    user = User.query.get_or_404(id)
+    if user != current_user:
+        return redirect(url_for('main.index'))
     if form.validate_on_submit():
         if form.submit.data:
             form.populate_obj(qry)
@@ -71,13 +74,16 @@ def editpost(id):  # pylint: disable=redefined-builtin
         else:
             return redirect(url_for('main.index'))
     return render_template('editpost.html', title='Edit client',
-                           form=form, id=id)
+                       form=form, id=id)
 
 
 @bp.route('/deletepost/<int:id>', methods=['GET', 'POST'])
 @login_required
 def deletepost(id):  # pylint: disable=redefined-builtin
     qry = Post.query.filter_by(id=id).first()
+    user = User.query.get_or_404(id)
+    if user != current_user:
+        return redirect(url_for('main.index'))
     db.session.delete(qry)
     db.session.commit()
     flash('Client successfully deleted!')

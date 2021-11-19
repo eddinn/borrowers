@@ -14,7 +14,9 @@
                     {{ post.clientaddress }}<br />
                     {{ post.clientzip }} {{ post.clientcity }}<br /><br />
                     <p>
-                        <a href="{{ url_for('main.editpost', id=post.id) }}"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;<a href="{{ url_for('main.deletepost', id=post.id) }}"><i class="fas fa-trash-alt"></i></a>
+                        {% if post.author.username == current_user.username %}
+                            <a href="{{ url_for('main.editpost', id=post.id) }}"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;<a href="{{ url_for('main.deletepost', id=post.id) }}"><i class="fas fa-trash-alt"></i></a>
+                        {% endif %}
                     </p>
                 </div>
             </td>
