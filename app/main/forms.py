@@ -11,7 +11,7 @@ class PostForm(FlaskForm):
     clientname = StringField('Name', validators=[DataRequired()],
                              render_kw={'style': 'width: 200px'})
     clientss = StringField('Social security number', validators=[Optional()],
-                            render_kw={'style': 'width: 200px'})
+                           render_kw={'style': 'width: 200px'})
     clientemail = StringField('Email', validators=[DataRequired(),
                               EqualTo('clientemail'), Email()],
                               render_kw={'style': 'width: 200px'})
@@ -47,7 +47,7 @@ class EditPostForm(FlaskForm):
     clientname = StringField('Name', validators=[DataRequired()],
                              render_kw={'style': 'width: 200px'})
     clientss = StringField('Social security number', validators=[Optional()],
-                            render_kw={'style': 'width: 200px'})
+                           render_kw={'style': 'width: 200px'})
     clientemail = StringField('Email', validators=[DataRequired(),
                               EqualTo('clientemail'), Email()],
                               render_kw={'style': 'width: 200px'})
