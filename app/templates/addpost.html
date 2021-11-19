@@ -5,15 +5,19 @@
     <script>
         tinymce.init({
         selector: '#clientinfo',
-        height: 400,
-        width: 850,
+        height: 350,
+        width: '100%',
         menubar: false,
+        autoresize_min_height: 250,
+        autoresize_max_height: 600,
+        autoresize_min_width: 300,
+        autoresize_max_width: 600,
         plugins: [
             'advlist lists charmap print preview hr anchor pagebreak spellchecker',
             'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime nonbreaking',
-            'save table contextmenu directionality template paste textcolor codesample'
+            'save table contextmenu directionality template paste textcolor codesample, autoresize'
         ],
-        toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link | print preview media fullpage | forecolor backcolor | codesample',
+        toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link',
         codesample_languages: [
             {text: 'HTML/XML', value: 'markup'},
             {text: 'JavaScript', value: 'javascript'},
@@ -29,7 +33,7 @@
     </script>
     <h3>New borrower</h3>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-xs-8 col-sm-6">
             {{ wtf.quick_form(form) }}
             <br />
             <br />

@@ -8,16 +8,24 @@ from app.models import Post
 
 # Forms
 class PostForm(FlaskForm):
-    clientname = StringField('Name', validators=[DataRequired()])
-    clientss = StringField('Social security number', validators=[Optional()])
+    clientname = StringField('Name', validators=[DataRequired()],
+                             render_kw={'style': 'width: 200px'})
+    clientss = StringField('Social security number', validators=[Optional()],
+                            render_kw={'style': 'width: 200px'})
     clientemail = StringField('Email', validators=[DataRequired(),
-                              EqualTo('clientemail'), Email()])
-    clientphone = StringField('Phone', validators=[DataRequired()])
-    clientaddress = StringField('Address', validators=[Optional()])
-    clientzip = StringField('ZIP', validators=[Optional()])
-    clientcity = StringField('City', validators=[Optional()])
+                              EqualTo('clientemail'), Email()],
+                              render_kw={'style': 'width: 200px'})
+    clientphone = StringField('Phone', validators=[DataRequired()],
+                              render_kw={'style': 'width: 200px'})
+    clientaddress = StringField('Address', validators=[Optional()],
+                                render_kw={'style': 'width: 200px'})
+    clientzip = StringField('ZIP', validators=[Optional()],
+                            render_kw={'style': 'width: 60px'})
+    clientcity = StringField('City', validators=[Optional()],
+                             render_kw={'style': 'width: 200px'})
     clientinfo = TextAreaField('Item list', validators=[Optional(),
-                               Length(max=2048)])
+                               Length(max=2048)],
+                               render_kw={'style': 'width: 600px'})
     submit = SubmitField(label='Submit')
     cancel = SubmitField(label='Cancel', render_kw={'formnovalidate': True})
 
@@ -36,16 +44,24 @@ class PostForm(FlaskForm):
 
 
 class EditPostForm(FlaskForm):
-    clientname = StringField('Name', validators=[DataRequired()])
-    clientss = StringField('Social security number', validators=[Optional()])
+    clientname = StringField('Name', validators=[DataRequired()],
+                             render_kw={'style': 'width: 200px'})
+    clientss = StringField('Social security number', validators=[Optional()],
+                            render_kw={'style': 'width: 200px'})
     clientemail = StringField('Email', validators=[DataRequired(),
-                              EqualTo('clientemail'), Email()])
-    clientphone = StringField('Phone', validators=[DataRequired()])
-    clientaddress = StringField('Address', validators=[Optional()])
-    clientzip = StringField('ZIP', validators=[Optional()])
-    clientcity = StringField('City', validators=[Optional()])
+                              EqualTo('clientemail'), Email()],
+                              render_kw={'style': 'width: 200px'})
+    clientphone = StringField('Phone', validators=[DataRequired()],
+                              render_kw={'style': 'width: 200px'})
+    clientaddress = StringField('Address', validators=[Optional()],
+                                render_kw={'style': 'width: 200px'})
+    clientzip = StringField('ZIP', validators=[Optional()],
+                            render_kw={'style': 'width: 60px'})
+    clientcity = StringField('City', validators=[Optional()],
+                             render_kw={'style': 'width: 200px'})
     clientinfo = TextAreaField('Item list', validators=[Optional(),
-                               Length(max=2048)])
+                               Length(max=2048)],
+                               render_kw={'style': 'width: 600px'})
     submit = SubmitField(label='Submit')
     cancel = SubmitField(label='Cancel',
                          render_kw={'formnovalidate': True})
