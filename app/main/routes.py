@@ -74,7 +74,7 @@ def editpost(id):  # pylint: disable=redefined-builtin
         else:
             return redirect(url_for('main.index'))
     return render_template('editpost.html', title='Edit client',
-                       form=form, id=id)
+                           form=form, id=id)
 
 
 @bp.route('/deletepost/<int:id>', methods=['GET', 'POST'])
