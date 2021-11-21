@@ -40,7 +40,6 @@ def addpost():
     if form.validate_on_submit():
         if form.submit.data:
             post = Post(clientname=form.clientname.data,
-                        clientss=form.clientss.data,
                         clientemail=form.clientemail.data,
                         clientphone=form.clientphone.data,
                         clientaddress=form.clientaddress.data,

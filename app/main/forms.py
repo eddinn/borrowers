@@ -10,8 +10,6 @@ from app.models import Post
 class PostForm(FlaskForm):
     clientname = StringField('Name', validators=[DataRequired()],
                              render_kw={'style': 'width: 200px'})
-    clientss = StringField('Social security number', validators=[Optional()],
-                           render_kw={'style': 'width: 200px'})
     clientemail = StringField('Email', validators=[DataRequired(),
                               EqualTo('clientemail'), Email()],
                               render_kw={'style': 'width: 200px'})
@@ -29,11 +27,11 @@ class PostForm(FlaskForm):
     submit = SubmitField(label='Submit')
     cancel = SubmitField(label='Cancel', render_kw={'formnovalidate': True})
 
-    @staticmethod
-    def validate_clientss(form, clientss):
-        clientss = Post.query.filter_by(clientss=clientss.data).first()
-        if clientss is not None:
-            raise ValidationError('Social security number must be unique.')
+    # @staticmethod
+    # def validate_clientss(form, clientss):
+    #    clientss = Post.query.filter_by(clientss=clientss.data).first()
+    #    if clientss is not None:
+    #        raise ValidationError('Social security number must be unique.')
 
     @staticmethod
     def validate_clientemail(form, clientemail):
@@ -46,8 +44,6 @@ class PostForm(FlaskForm):
 class EditPostForm(FlaskForm):
     clientname = StringField('Name', validators=[DataRequired()],
                              render_kw={'style': 'width: 200px'})
-    clientss = StringField('Social security number', validators=[Optional()],
-                           render_kw={'style': 'width: 200px'})
     clientemail = StringField('Email', validators=[DataRequired(),
                               EqualTo('clientemail'), Email()],
                               render_kw={'style': 'width: 200px'})
