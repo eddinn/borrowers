@@ -49,11 +49,11 @@ def addpost():
                         author=current_user)
             db.session.add(post)
             db.session.commit()
-            flash('Client data successfully added!')
+            flash('Borrower data successfully added!')
             return redirect(url_for('main.addpost'))
         else:
             return redirect(url_for('main.index'))
-    return render_template('addpost.html', title='Add client', form=form)
+    return render_template('addpost.html', title='Add borrower', form=form)
 
 
 @bp.route('/editpost/<int:id>', methods=['GET', 'POST'])
@@ -61,8 +61,8 @@ def addpost():
 def editpost(id):  # pylint: disable=redefined-builtin
     qry = Post.query.filter_by(id=id).first()
     form = EditPostForm(request.form, obj=qry)
-    user = User.query.get_or_404(id)
-    if user != current_user:
+    author = User.query.get_or_404(id)
+    if author != current_user:
         return redirect(url_for('main.index'))
     if form.validate_on_submit():
         if form.submit.data:
@@ -72,7 +72,7 @@ def editpost(id):  # pylint: disable=redefined-builtin
             return redirect(url_for('main.index', id=id))
         else:
             return redirect(url_for('main.index'))
-    return render_template('editpost.html', title='Edit client',
+    return render_template('editpost.html', title='Edit borrower',
                            form=form, id=id)
 
 
@@ -80,12 +80,12 @@ def editpost(id):  # pylint: disable=redefined-builtin
 @login_required
 def deletepost(id):  # pylint: disable=redefined-builtin
     qry = Post.query.filter_by(id=id).first()
-    user = User.query.get_or_404(id)
-    if user != current_user:
+    author = User.query.get_or_404(id)
+    if author != current_user:
         return redirect(url_for('main.index'))
     db.session.delete(qry)
     db.session.commit()
-    flash('Client successfully deleted!')
+    flash('Borrower successfully deleted!')
     return redirect(url_for('main.index'))
 
 
