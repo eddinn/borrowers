@@ -61,9 +61,9 @@ def addpost():
 def editpost(id):  # pylint: disable=redefined-builtin
     qry = Post.query.filter_by(id=id).first()
     form = EditPostForm(request.form, obj=qry)
-    author = User.query.get_or_404(id)
-    if author != current_user:
-        return redirect(url_for('main.index'))
+    # author = User.query.get_or_404(id)
+    # if author != current_user:
+    #    return redirect(url_for('main.index'))
     if form.validate_on_submit():
         if form.submit.data:
             form.populate_obj(qry)
@@ -80,9 +80,9 @@ def editpost(id):  # pylint: disable=redefined-builtin
 @login_required
 def deletepost(id):  # pylint: disable=redefined-builtin
     qry = Post.query.filter_by(id=id).first()
-    author = User.query.get_or_404(id)
-    if author != current_user:
-        return redirect(url_for('main.index'))
+    # author = User.query.get_or_404(id)
+    # if author != current_user:
+    #   return redirect(url_for('main.index'))
     db.session.delete(qry)
     db.session.commit()
     flash('Borrower successfully deleted!')
