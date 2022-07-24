@@ -178,7 +178,6 @@ def post(post):
                            post=post)
 
 
-#  need to init this in jinja
 @bp.route('/post/<int:post_id>/comment', methods=['GET', 'POST'])
 @login_required
 def comment_post(post_id):
