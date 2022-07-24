@@ -1,10 +1,10 @@
 {% extends "base.html" %}
-{% import 'bootstrap/wtf.html' as wtf %}
+{% import 'bootstrap/form.html' as wtf %}
 {% block app_content %}
 {% if posts %}
-    <div class="row justify-content-md-center">
+    <div class="row justify-content">
         {% for post in posts %}
-                {% include '_post.html' %}
+            {% include '_post.html' %}
         {% endfor %}
     </div>
         <nav aria-label="...">
@@ -33,4 +33,7 @@
             <div class="col-md-4"></div>
         </div>
     {% endif %}
+{% endblock %}
+{% block scripts %}
+  {{ super() }}
 {% endblock %}

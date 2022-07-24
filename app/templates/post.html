@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="col-xs-12 col-sm-6">
+    <table class="table table-hover">
+        <tr>
+            <td width="70px">
+                <div style="height: auto; width: 140px;">
+                    <a href="{{ url_for('main.post', post=post.id) }}"><b>{{ post.clientname }}</b></a><br />
+                    Borrower ID: {{ post.id }}<br />
+                    {{ post.clientemail }}<br />
+                    {{ post.clientphone }}<br />
+                    {{ post.clientaddress }}<br />
+                    {{ post.clientzip }} {{ post.clientcity }}<br /><br />
+                    <hr style="width: auto; text-align: left; margin-left:5px; margin-top: 5px; margin-bottom: 5px; margin-right: 10px;">
+                    <a href="{{ url_for('main.user', username=post.author.username) }}">{{ post.author.name }}</a><br />
+                    added: {{ moment(post.timestamp).fromNow() }}<br />
+                    <p>
+                        {% if post.author.username == current_user.username %}
+                            <a href="{{ url_for('main.editpost', id=post.id) }}"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;<a href="{{ url_for('main.deletepost', id=post.id) }}"><i class="fas fa-trash-alt"></i></a>
+                        {% endif %}
+                    </p>
+                </div>
+            </td>
+            <td>
+                <div style="height: auto;">
+                    <form method="POST" action="{{ url_for('main.post', post=post.id) }}">
+                        {{ form.hidden_tag() }}
+                        <fieldset class="form-group">
+                            <legend class="border-bottom mb-4">Comment</legend>
+                                <div class="form-group">
+                                    {{ form.body.label(class="form-control-label") }}
+                                        {% if form.body.errors %}
+                                            {{ form.body(class="form-control form-control-lg is-invalid") }}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.body.errors %}
+                                                    <span>{{ error }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ form.body(class="form-control form-control-lg") }}
+                                        {% endif %}
+                                </div>
+                        </fieldset>
+                        <div class="form-group">
+                            {{ form.submit(class="btn btn-outline-info") }}
+                        </div>
+                    </form>
+                    <b>Item list:</b><br />
+                    {{ post.clientinfo|safe }}<br />
+                </div>
+            </td>
+            <td>
+                {% if comments %}
+                    <div class="row justify-content-md-center">
+                        {% for comment in comments %}
+                        {% include 'comment_post.html' %}
+                        {% endfor %}
+                    </div>
+                    <div class="col-md-4"></div>
+                    </div>
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+</div>
+{% endblock content %}

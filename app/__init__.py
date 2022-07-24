@@ -6,7 +6,7 @@ from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
-from flask_bootstrap import Bootstrap
+from flask_bootstrap import Bootstrap5
 from flask_mail import Mail
 from flask_moment import Moment
 from elasticsearch import Elasticsearch
@@ -17,7 +17,7 @@ migrate = Migrate()
 loginm = LoginManager()
 loginm.login_view = 'auth.login'
 loginm.login_message = ('Please log in to access this page.')
-bootstrap = Bootstrap()
+bootstrap = Bootstrap5()
 mail = Mail()
 moment = Moment()
 

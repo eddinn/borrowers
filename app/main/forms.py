@@ -2,7 +2,7 @@ from flask import request
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Email, EqualTo, Optional, \
-    Length, ValidationError
+    Length, ValidationError, InputRequired
 from app.models import Post
 
 
@@ -72,3 +72,9 @@ class SearchForm(FlaskForm):
         if 'csrf_enabled' not in kwargs:
             kwargs['csrf_enabled'] = False
         super(SearchForm, self).__init__(*args, **kwargs)
+
+
+class AddCommentForm(FlaskForm):
+    body = StringField('Add item', validators=[InputRequired()],
+                       render_kw={'style': 'width: 300px; height: 125px'})
+    submit = SubmitField(label='Submit')

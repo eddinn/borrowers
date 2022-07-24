@@ -1,7 +1,7 @@
 from app import db
 from app.main import bp
-from app.main.forms import PostForm, EditPostForm
-from app.models import User, Post
+from app.main.forms import PostForm, EditPostForm, AddCommentForm
+from app.models import User, Post, Comment
 from app.main.forms import SearchForm
 from flask import request, render_template, flash, redirect, \
     url_for, current_app, g
@@ -59,7 +59,7 @@ def addpost():
 @bp.route('/editpost/<int:id>', methods=['GET', 'POST'])
 @login_required
 def editpost(id):  # pylint: disable=redefined-builtin
-    qry = Post.query.filter_by(id=id).first()
+    qry = Post.query.filter_by(id=Post.id).first()
     form = EditPostForm(request.form, obj=qry)
     # author = User.query.get_or_404(id)
     # if author != current_user:
@@ -79,7 +79,7 @@ def editpost(id):  # pylint: disable=redefined-builtin
 @bp.route('/deletepost/<int:id>', methods=['GET', 'POST'])
 @login_required
 def deletepost(id):  # pylint: disable=redefined-builtin
-    qry = Post.query.filter_by(id=id).first()
+    qry = Post.query.filter_by(id=Post.id).first()
     # author = User.query.get_or_404(id)
     # if author != current_user:
     #   return redirect(url_for('main.index'))
@@ -160,3 +160,35 @@ def search():
 def explore():
     posts = Post.query.order_by(Post.timestamp.desc()).all()
     return render_template('index.html', title='Explore', posts=posts)
+
+
+@bp.route('/post/<int:post>', methods=['GET', 'POST'])
+@login_required
+def post(post):
+    post = Post.query.filter_by(id=Post.id).first()
+    form = AddCommentForm()
+    if request.method == 'POST': # this only gets executed when the form is submitted and not when the page loads
+        if form.validate_on_submit():
+            comment = Comment(body=form.body.data, post_id=post.id)
+            db.session.add(comment)
+            db.session.commit()
+            flash("Item added!", "success")
+            return redirect(url_for('main.post', post=post.id))
+    return render_template('post.html', title='Borrower info:', form=form,
+                           post=post)
+
+
+@bp.route('/post/<int:post_id>/comment', methods=['GET', 'POST'])
+@login_required
+def comment_post(post_id):
+    post_id = Post.query.get_or_404(post_id)
+    form = AddCommentForm()
+    if request.method == 'POST': # this only gets executed when the form is submitted and not when the page loads
+        if form.validate_on_submit():
+            comment = Comment(body=form.body.data, post_id=post.id)
+            db.session.add(comment)
+            db.session.commit()
+            flash("Item added!", "success")
+            return redirect(url_for('main.post', post_id=post.id))
+    return render_template('comment_post.html', title='Comment Post', 
+                           form=form, post_id=post.id)

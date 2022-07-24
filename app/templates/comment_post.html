@@ -2,16 +2,14 @@
     <table class="table table-hover">
         <tr>
             <td width="70px">
-                <div style="height: auto; width: 140px;">
-                    <a href="{{ url_for('main.post', post=post.id) }}"><b>{{ post.clientname }}</b></a><br />                   
-                    Borrower ID: {{ post.id }}<br />
-                    {{ post.clientemail }}<br />
-                    {{ post.clientphone }}<br />
-                    {{ post.clientaddress }}<br />
-                    {{ post.clientzip }} {{ post.clientcity }}<br /><br />
-                    <hr style="width: auto; text-align: left; margin-left:5px; margin-top: 5px; margin-bottom: 5px; margin-right: 10px;">
-                    <a href="{{ url_for('main.user', username=post.author.username) }}">{{ post.author.name }}</a><br />
+                <div style="height: auto; width: 100px;">
+                    <a href="{{ url_for('main.user', username=post.author.username) }}">{{ post.author.name }} </a><br />
                     added: {{ moment(post.timestamp).fromNow() }}<br />
+                    <hr style="width: auto; text-align: left; margin-left:5px; margin-top: 5px; margin-bottom: 5px; margin-right: 10px;">
+                    <b>Item:</b><br />
+                    {% block content %}
+
+                    {% endblock content %}
                     <p>
                         {% if post.author.username == current_user.username %}
                             <a href="{{ url_for('main.editpost', id=post.id) }}"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;&nbsp;<a href="{{ url_for('main.deletepost', id=post.id) }}"><i class="fas fa-trash-alt"></i></a>
