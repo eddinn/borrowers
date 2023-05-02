@@ -8,7 +8,7 @@ dominate==2.4.0
 elasticsearch==7.0.5
 entrypoints==0.3
 flake8==3.7.9
-Flask==1.1.1
+Flask==2.3.2
 Flask-Babel==2.0.0
 Flask-Bootstrap==3.3.7.1
 Flask-Login==0.4.1
