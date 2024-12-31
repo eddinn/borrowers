@@ -20,7 +20,7 @@ Flask-WTF==0.14.2
 guess-language==0.2
 isort==5.6.4
 itsdangerous==1.1.0
-Jinja2==3.1.4
+Jinja2==3.1.5
 lazy-object-proxy==1.4.3
 Mako==1.2.3
 MarkupSafe==1.1.1
